@@ -1,0 +1,218 @@
+/* FONTS */
+
+@font-face {
+    font-family: 'archivoReg';
+    src: url('../assets/type/Archivo-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'archivoMed';
+    src: url('../assets/type/Archivo-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'archivoBold';
+    src: url('../assets/type/Archivo-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'archivoBlack';
+    src: url('../assets/type/Archivo-Black.ttf');
+}
+
+@font-face {
+    font-family: 'archivoIt';
+    src: url('../assets/type/Archivo-Italic.ttf');
+}
+
+/* GENRAL */
+
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #c31422;
+    --black: #000;
+    --black2: rgba(0, 0, 0, 0.7);
+    --white: #fff;
+    --button: rgb(66, 66, 66);
+    --grey: rgb(241, 241, 241);
+    --grey2: rgb(138, 138, 138);
+    --typeC: rgb(97, 97, 97);
+
+    --type-alfa: "archivoReg", sans-serif;
+    --type-beta: "archivoBold", sans-serif;
+}
+
+::-moz-selection {
+    color: var(--primary-color);
+    background: var(--secondary-color);
+}
+
+::selection {
+    color: var(--primary-color);
+    background: var(--secondary-color);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--type-alfa);
+}
+
+/* HEADER */
+
+.container {
+    width: 100%;
+    height: 120px;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 180px;
+}
+
+/* FORM CONTAINER */
+
+.formContainer {
+    color: var(--typeC);
+    margin: 0 auto;
+    background-color: var(--grey);
+    width: 80%;
+    height: 90vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoContainer {
+    padding: 50px;
+}
+
+.title, .description {
+    padding: 15px;
+}
+
+/* ESTILOS FORMULARIO */
+
+.fecha-opcion {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #b3b3b3;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+  }
+
+  .fecha-opcion.seleccionada {
+    background-color: var(--primary-color);
+  }
+
+  .fecha-opcion.bloqueada {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .oculto {
+    display: none;
+  }
+
+  .formContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .formTitle{
+    font-family: var(--type-alfa);
+    font-size: 25px;
+    font-weight: 800;
+    padding: 20px;
+  }
+
+  .labelsContainer {
+    margin: 25px 0px;
+  }
+
+  .broker, .cliente {
+    border: 1px solid var(--primary-color);
+    padding: 15px;
+    margin: 10px;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  .fecha-opcion{
+    pointer-events: none;
+  }
+
+  .dataContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 25px;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"] {
+    border: 1px solid var(--grey2);
+    color: var(--primary-color);
+    font-family: 'archivoReg';
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 100%;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+  }
+
+  button:hover {
+    background-color: var(--black);
+  }
+
+  .swal2-confirm {
+    background-color: var(--primary-color) !important;
+  }
+
+  @media screen and (max-width: 440px) {
+    .formContainer {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .infoContainer {
+        padding: 20px;
+    }
+
+    .title, .description {
+        padding: 10px;
+    }
+
+    .formTitle{
+        font-size: 20px;
+    }
+  }

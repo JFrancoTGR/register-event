@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>EVENTO BROKERS</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img src="assets/img/logo-eu.svg" class="logo" alt="">
+        </div>
+    </header>
+    <div class="formContainer">
+        <div class="infoContainer">
+            <h2 class="title">Conoce nuestras amenidades.</h2>
+            <p class="description">Regístrate para asegurar tu lugar. El evento se llevará a cabo en las
+                siguientes fechas: Brokers 3 de octubre; Clientes 4 de octubre.</p>
+        </div>
+        <div class="formContent">
+            <form id="miFormulario">
+                <p class="formTitle">Tipo de usuario:</p>
+
+                <div class="labelsContainer">
+                    <label class="broker">
+                        <input type="radio" name="client-type" value="broker" >
+                        Soy Broker
+                    </label>
+
+                    <label class="cliente">
+                        <input type="radio" name="client-type" value="cliente" >
+                        Soy Cliente
+                    </label>
+                </div>
+
+                <div class="dateContainer">
+                    <p>Fecha de evento:</p>
+                    <div class="fecha-opcion" data-fecha="3-octubre">3 de octubre</div>
+                    <div class="fecha-opcion" data-fecha="4-octubre">4 de octubre</div>
+                </div>
+
+                <div class="dataContainer">
+                    <input type="text" name="nombre" placeholder="Nombre completo" >
+                    <input type="tel" name="telefono" placeholder="Teléfono" >
+                    <input type="email" name="correo" placeholder="Correo electrónico" >
+                </div>
+
+                <!-- Campo oculto para enviar al backend -->
+                <input type="hidden" name="fecha" id="fechaSeleccionada" >
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="js/selector.js"></script>
+
+</html>
