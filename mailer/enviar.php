@@ -47,8 +47,9 @@ try {
 
 
     // Emisor y receptor
-    $mail->setFrom('', 'Registro Evento');
+    $mail->setFrom('', 'Registro Evento - Amenidades en Tabacalera');
     $mail->addAddress(''); // destinatario: usuario registrado
+    $mail->addBCC('');
     
     // Contenido
     $mail->isHTML(true);

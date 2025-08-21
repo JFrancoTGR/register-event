@@ -1,0 +1,6 @@
+#PHPMailer
+/vendor/
+
+#Env
+.env
+.env.*

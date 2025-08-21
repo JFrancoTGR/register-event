@@ -5,6 +5,8 @@ const dateOptions = document.querySelectorAll('.fecha-opcion');
 const inputDate = document.getElementById('fechaSeleccionada');
 const form = document.getElementById('miFormulario');
 
+let isSending = false;
+
 function updateDate(clientType) {
   let defaultDate = null;
 
@@ -47,8 +49,10 @@ dateOptions.forEach(option => {
 });
 
 // Envío personalizado con Fetch y SweetAlert2
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', async function (e) {
   e.preventDefault();
+  
+  if (isSending) return;
 
   const type = document.querySelector('input[name="client-type"]:checked')?.value;
   const date = inputDate.value;
@@ -75,36 +79,36 @@ form.addEventListener('submit', function (e) {
 
   // Deshabilitar botón mientras se envía
   const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+
+  isSending = true;
   btn.disabled = true;
   btn.textContent = 'Enviando...';
+  [...form.elements].forEach(el => el.disabled = el === btn ? true : el.disabled || false);
 
-  fetch('mailer/enviar.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    btn.disabled = false;
-    btn.textContent = 'Enviar';
-    if (response.ok) {
-      form.reset();
-      dateOptions.forEach(op => op.classList.remove('seleccionada'));
-      Swal.fire({
-        icon: 'success',
-        title: '¡Registro exitoso!',
-        text: 'Ya tienes asegurado tu lugar en nuestro evento.',
-      });
-    } else {
-      throw new Error('Error en el servidor');
-    }
-  })
-  .catch(error => {
+  try {
+    const response = await fetch('mailer/enviar.php', {method: 'POST', body: formData});
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload?.mensaje || 'Error en el servidor');
+
+    form.reset();
+    dateOptions.forEach(op => op.classList.remove('seleccionada'));
+    Swal.fire({
+      icon: 'success',
+      title: 'Registro exitoso.',
+      text: ' Ya tienes asegurado tu lugar en nuestro evento.',
+    });
+  } catch (error) {
     console.error(error);
-    btn.disabled = false;
-    btn.textContent = 'Enviar';
     Swal.fire({
       icon: 'error',
-      title: 'Error al enviar',
+      title: 'Error en el envío.',
       text: 'Ocurrió un problema al enviar tus datos. Intenta de nuevo más tarde.',
     });
-  });
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    [...form.elements].forEach(el => el.disabled = false);
+    isSending = false;
+  }
 });

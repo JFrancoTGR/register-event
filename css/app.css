@@ -36,6 +36,7 @@
 
 :root {
     --primary-color: #c31422;
+    --secondary-color: #dad6d6;
     --black: #000;
     --black2: rgba(0, 0, 0, 0.7);
     --white: #fff;
@@ -191,6 +192,12 @@ body {
 
   button:hover {
     background-color: var(--black);
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 
   .swal2-confirm {
